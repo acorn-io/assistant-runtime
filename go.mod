@@ -2,41 +2,29 @@ module github.com/acorn-io/assistant-runtime
 
 go 1.21.5
 
-replace (
-	github.com/acorn-io/aml => ../aml
-	github.com/acorn-io/baaah => ../baaah
-	github.com/acorn-io/brent => ../brent
-	github.com/acorn-io/broadcaster => ../broadcaster
-	github.com/acorn-io/cmd => ../cmd
-	github.com/acorn-io/mink => ../mink
-	github.com/acorn-io/mink/brent => ../mink/brent
-	github.com/acorn-io/runtime => ../acorn
-	github.com/acorn-io/schemer => ../schemer
-)
-
 require (
-	github.com/AlecAivazis/survey/v2 v2.3.6
+	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/acorn-io/aml v0.0.0-20240106192317-21afc7320c77
 	github.com/acorn-io/baaah v0.0.0-20240111044744-384c1595d964
 	github.com/acorn-io/cmd v0.0.0-20240101193821-66a32bc6b939
-	github.com/acorn-io/mink v0.0.0-20240111054004-0fda9f891928
-	github.com/acorn-io/mink/brent v0.0.0-20231115230512-73aa6406e884
-	github.com/acorn-io/runtime v0.0.0
+	github.com/acorn-io/mink v0.0.0-20240111054603-0c035e11f167
+	github.com/acorn-io/mink/brent v0.0.0-20240111054603-0c035e11f167
+	github.com/acorn-io/runtime v0.10.0-rc2.0.20240111153655-10e6da758a97
 	github.com/acorn-io/z v0.0.0-20231104012607-4cab1b3ec5e5
-	github.com/sashabaranov/go-openai v1.17.9
+	github.com/sashabaranov/go-openai v1.17.11
 	github.com/sirupsen/logrus v1.9.3
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.8.0
 	k8s.io/api v0.29.0
 	k8s.io/apimachinery v0.29.0
 	k8s.io/apiserver v0.29.0
 	k8s.io/client-go v0.29.0
-	k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00
+	k8s.io/kube-openapi v0.0.0-20240105020646-a37d4de58910
 	sigs.k8s.io/controller-runtime v0.16.3
 )
 
 require (
 	github.com/NYTimes/gziphandler v1.1.1 // indirect
-	github.com/acorn-io/brent v0.0.0 // indirect
+	github.com/acorn-io/brent v0.0.0-20240111054103-1decca8a54d3 // indirect
 	github.com/acorn-io/broadcaster v0.0.0-20240105011354-bfadd4a7b45d // indirect
 	github.com/acorn-io/schemer v0.0.0-20240105014212-9739d5485208 // indirect
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20230305170008-8188dc5388df // indirect
@@ -48,6 +36,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
+	github.com/creack/pty v1.1.18 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/evanphx/json-patch v5.7.0+incompatible // indirect
@@ -59,7 +48,7 @@ require (
 	github.com/go-openapi/jsonpointer v0.19.6 // indirect
 	github.com/go-openapi/jsonreference v0.20.2 // indirect
 	github.com/go-openapi/swag v0.22.4 // indirect
-	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
@@ -78,13 +67,14 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
+	github.com/jonboulle/clockwork v0.3.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
-	github.com/mattn/go-sqlite3 v1.14.14 // indirect
+	github.com/mattn/go-sqlite3 v1.14.16 // indirect
 	github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
 	github.com/moby/locker v1.0.1 // indirect
