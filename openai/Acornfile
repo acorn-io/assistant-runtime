@@ -1,0 +1,14 @@
+services: default: {
+	default: true
+	consumer: {
+		env: "OPENAI_API_KEY": "secret://credential/apiKey"
+	}
+	secrets: ["credential"]
+}
+
+secrets: credential: {
+	type: "credential.openai.com"
+	data: {
+		apiKey: ""
+	}
+}

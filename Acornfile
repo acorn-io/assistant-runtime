@@ -1,0 +1,53 @@
+services: default: {
+    default: true
+    container: "api"
+    ports: "8080/http"
+}
+
+services: openai: {
+	build: "./openai"
+}
+
+containers: api: {
+	build: {
+		dockerfile: "build.acorn"
+	}
+    env: {
+        SERVER_DSN: "sqlite://file:/var/lib/db/assistant.db?_journal=WAL&cache=shared"
+        XCON_AIR_DEBUG_STOP: "true"
+    }
+    dirs: {
+        "/var/lib/db": "volume://assistant-runtime-state"
+    }
+	command: "server"
+	ports: {
+        dev: "2346:2345"
+        publish: "8080/http"
+    }
+}
+
+containers: controller: {
+	permissions: rules: [
+		{
+			apiGroup: "api.acorn.io"
+			resources: ["apps"]
+			verbs: ["read", "get", "list", "watch"]
+		}
+	]
+    env: {
+        IMAGE_URL_BASE: "https://@{services.api.endpoint}"
+        CON_AIR_DEBUG_STOP: "true"
+    }
+    dependsOn: "api"
+	build: {
+		dockerfile: "build.acorn"
+	}
+    ports: dev: 2345
+	command: "controller"
+	env: {
+		CONTROLLER_API_URL: "http://api:8080"
+		CONTROLLER_NAMESPACE: "@{acorn.project}"
+		CONTROLLER_APP_NAME: "@{acorn.name}"
+	}
+	consumes: ["openai"]
+}
