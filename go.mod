@@ -4,7 +4,7 @@ go 1.21.5
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
-	github.com/acorn-io/aml v0.0.0-20240106192317-21afc7320c77
+	github.com/acorn-io/aml v0.0.0-20240123034106-c922539f001c
 	github.com/acorn-io/baaah v0.0.0-20240119160309-2a58ee757bbd
 	github.com/acorn-io/cmd v0.0.0-20240101193821-66a32bc6b939
 	github.com/acorn-io/mink v0.0.0-20240111054603-0c035e11f167

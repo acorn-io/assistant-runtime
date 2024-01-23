@@ -15,8 +15,8 @@ github.com/NYTimes/gziphandler v1.1.1 h1:ZUDjpQae29j0ryrS0u/B8HZfJBtBQHjqw2rQ2cq
 github.com/NYTimes/gziphandler v1.1.1/go.mod h1:n/CVRwUEOgIxrgPvAQhUUr9oeUtvrhMomdKFjzJNB0c=
 github.com/Netflix/go-expect v0.0.0-20220104043353-73e0943537d2 h1:+vx7roKuyA63nhn5WAunQHLTznkw5W8b1Xc0dNjp83s=
 github.com/Netflix/go-expect v0.0.0-20220104043353-73e0943537d2/go.mod h1:HBCaDeC1lPdgDeDbhX8XFpy1jqjK0IBG8W5K+xYqA0w=
-github.com/acorn-io/aml v0.0.0-20240106192317-21afc7320c77 h1:MFaoLSKZj1z9c+U7S0GGkS7LXfMeBfQTgGRGVs1HwMg=
-github.com/acorn-io/aml v0.0.0-20240106192317-21afc7320c77/go.mod h1:z/Tz4f5dWHj/F5THru0+IQBIq31Xq06S5b7YpPkV7K0=
+github.com/acorn-io/aml v0.0.0-20240123034106-c922539f001c h1:mQnDW2xkDzSB1IGYeltT6VthglDZsFnFQ5+Z0iZ2y74=
+github.com/acorn-io/aml v0.0.0-20240123034106-c922539f001c/go.mod h1:z/Tz4f5dWHj/F5THru0+IQBIq31Xq06S5b7YpPkV7K0=
 github.com/acorn-io/baaah v0.0.0-20240119160309-2a58ee757bbd h1:Zbau2J6sEPl1H4gqnEx4/TI55eZncQR5cjfPOcG2lxE=
 github.com/acorn-io/baaah v0.0.0-20240119160309-2a58ee757bbd/go.mod h1:13nTO3svO8zTD3j9E5c86tCtK5YrKsK5sxca4Lwkbc0=
 github.com/acorn-io/brent v0.0.0-20240111054103-1decca8a54d3 h1:NcXsqsPpBsfTsjTWTLu5pxQSpS/nfTwDT/l2WgpWeMk=

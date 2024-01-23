@@ -36,7 +36,7 @@ containers: controller: {
 	]
     env: {
         IMAGE_URL_BASE: "https://@{services.api.endpoint}"
-        CON_AIR_DEBUG_STOP: "true"
+        XCON_AIR_DEBUG_STOP: "true"
     }
     dependsOn: "api"
 	build: {
