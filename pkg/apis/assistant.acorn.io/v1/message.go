@@ -167,6 +167,7 @@ type MessageStatus struct {
 	RunAfter        *metav1.Time       `json:"runAfter,omitempty"`
 	ThreadName      string             `json:"threadName,omitempty"`
 	NextMessageName string             `json:"nextMessageName,omitempty"`
+	InvokeToolNames []string           `json:"invokeToolNames,omitempty"`
 	Conditions      []metav1.Condition `json:"conditions,omitempty"`
 }
 

@@ -34,10 +34,18 @@ func setThreadName(ctx context.Context, c kclient.Client, msg *v1.Message) error
 	if err := c.Get(ctx, router.Key(msg.Namespace, msg.Spec.ParentMessageName), &parent); err != nil {
 		return err
 	}
-	if parent.Status.NextMessageName != "" && parent.Status.NextMessageName != msg.Name {
-		return conditions.NewErrTerminalf("parent message [%s] is already a parent to [%s]", parent.Name, parent.Status.NextMessageName)
-	}
-	if parent.Status.NextMessageName == "" {
+	if parent.Status.NextMessageName != msg.Name {
+		if parent.Status.NextMessageName != "" {
+			var siblingMsg v1.Message
+			if err := c.Get(ctx, router.Key(msg.Namespace, parent.Status.NextMessageName), &siblingMsg); apierror.IsNotFound(err) {
+			} else if err != nil {
+				return err
+			} else {
+				if err := c.Delete(ctx, &siblingMsg); err != nil {
+					return err
+				}
+			}
+		}
 		parent.Status.NextMessageName = msg.Name
 		if err := c.Status().Update(ctx, &parent); err != nil {
 			return err

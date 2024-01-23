@@ -10,6 +10,7 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/acorn-io/aml/pkg/jsonschema"
 	v1 "github.com/acorn-io/assistant-runtime/pkg/apis/assistant.acorn.io/v1"
 	"github.com/acorn-io/assistant-runtime/pkg/hash"
 	"github.com/acorn-io/assistant-runtime/pkg/vision"
@@ -136,7 +137,7 @@ func toMessages(ctx context.Context, k8s kclient.Client, namespace string, reque
 		}
 
 		if len(chatMessage.MultiContent) == 1 && chatMessage.MultiContent[0].Type == openai.ChatMessagePartTypeText {
-			if chatMessage.MultiContent[0].Text == "." {
+			if chatMessage.MultiContent[0].Text == "." || chatMessage.MultiContent[0].Text == "{}" {
 				continue
 			}
 			chatMessage.Content = chatMessage.MultiContent[0].Text
@@ -190,12 +191,16 @@ func (c *Client) Call(ctx context.Context, k8s kclient.Client, namespace string,
 
 	if !messageRequest.Vision {
 		for _, tool := range messageRequest.Tools {
+			params := tool.Function.Parameters
+			if params != nil && params.Type == "object" && params.Properties == nil {
+				params.Properties = map[string]jsonschema.Property{}
+			}
 			request.Tools = append(request.Tools, openai.Tool{
 				Type: openai.ToolType(tool.Type),
 				Function: openai.FunctionDefinition{
 					Name:        tool.Function.Name,
 					Description: tool.Function.Description,
-					Parameters:  tool.Function.Parameters,
+					Parameters:  params,
 				},
 			})
 		}
@@ -242,6 +247,12 @@ func appendMessage(msg v1.MessageBody, response openai.ChatCompletionStreamRespo
 		}
 
 		tc := msg.Content[idx]
+		if tc.ToolCall == nil {
+			tc.ToolCall = &v1.ToolCall{}
+		}
+		if tool.Index != nil {
+			tc.ToolCall.Index = tool.Index
+		}
 		tc.ToolCall.ID = override(tc.ToolCall.ID, tool.ID)
 		tc.ToolCall.Type = v1.ToolType(override(string(tc.ToolCall.Type), string(tool.Type)))
 		tc.ToolCall.Function.Name += tool.Function.Name

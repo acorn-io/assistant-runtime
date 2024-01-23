@@ -24,15 +24,18 @@ func (in *InvokeTool) GetConditions() *[]metav1.Condition {
 }
 
 type InvokeToolSpec struct {
-	ThreadName        string   `json:"threadName,omitempty"`
-	ParentMessageName string   `json:"parentMessageName,omitempty"`
-	ToolCall          ToolCall `json:"toolCall,omitempty"`
+	ThreadName          string   `json:"threadName,omitempty"`
+	ParentMessageName   string   `json:"parentMessageName,omitempty"`
+	ResponseMessageName string   `json:"responseMessageName,omitempty"`
+	ToolCall            ToolCall `json:"toolCall,omitempty"`
 }
 
 type InvokeToolStatus struct {
-	Content    []ContentPart      `json:"content,omitempty"`
-	InProgress bool               `json:"inProgress,omitempty"`
-	Conditions []metav1.Condition `json:"conditions,omitempty"`
+	Content              []ContentPart      `json:"content,omitempty"`
+	AssistantMessageName string             `json:"assistantMessageName,omitempty"`
+	Generation           int64              `json:"generation,omitempty"`
+	InProgress           bool               `json:"inProgress,omitempty"`
+	Conditions           []metav1.Condition `json:"conditions,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

@@ -608,6 +608,11 @@ func (in *MessageStatus) DeepCopyInto(out *MessageStatus) {
 		in, out := &in.RunAfter, &out.RunAfter
 		*out = (*in).DeepCopy()
 	}
+	if in.InvokeToolNames != nil {
+		in, out := &in.InvokeToolNames, &out.InvokeToolNames
+		*out = make([]string, len(*in))
+		copy(*out, *in)
+	}
 	if in.Conditions != nil {
 		in, out := &in.Conditions, &out.Conditions
 		*out = make([]metav1.Condition, len(*in))

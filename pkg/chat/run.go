@@ -21,12 +21,12 @@ import (
 type Options struct {
 	Assistant string
 	Thread    string
-	Namespace string
+	Namespace string `usage:"Set namespace" short:"n" env:"NAMESPACE"`
 }
 
 func (o Options) complete() Options {
 	if o.Namespace == "" {
-		o.Namespace = "acorn"
+		o.Namespace = "local"
 	}
 	return o
 }
@@ -102,6 +102,8 @@ func (r *run) deleteMessage(ctx context.Context, thread *v1.Thread) error {
 			filtered = append(filtered, msg)
 		}
 	}
+
+	msgs.Items = filtered
 
 	var noErr ErrNoChoice
 	msgName, err := selectItem(&msgs, "Select message")
@@ -292,6 +294,8 @@ func (r *run) printMessage(ctx context.Context, t *v1.Thread, name string) error
 					return false, nil
 				}
 
+				content = fmt.Sprintf("[%s]: %s", msg.Name, content)
+
 				fmt.Print(strings.TrimPrefix(content, printed))
 				printed = content
 
@@ -300,7 +304,7 @@ func (r *run) printMessage(ctx context.Context, t *v1.Thread, name string) error
 				}
 
 				// It's done when it's an assistant message, or we have the next message
-				if msg.Status.NextMessageName != "" || msg.Status.Message.Role == v1.RoleTypeAssistant {
+				if msg.Status.NextMessageName != "" || (msg.Status.Message.Role == v1.RoleTypeAssistant && msg.Status.Message.ToolCall == nil) {
 					fmt.Println()
 					return true, nil
 				}

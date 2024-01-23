@@ -18,6 +18,8 @@ func callAssistant(req router.Request, resp router.Response, threadParent *v1.Th
 	msgName := name.SafeConcatName("m", callID)
 	assistantName := call.Function.Name
 
+	req.Object.(*v1.InvokeTool).Status.AssistantMessageName = msgName
+
 	resp.Objects(&v1.Thread{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      threadName,

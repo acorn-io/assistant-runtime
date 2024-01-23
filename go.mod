@@ -5,13 +5,13 @@ go 1.21.5
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/acorn-io/aml v0.0.0-20240106192317-21afc7320c77
-	github.com/acorn-io/baaah v0.0.0-20240111044744-384c1595d964
+	github.com/acorn-io/baaah v0.0.0-20240119160309-2a58ee757bbd
 	github.com/acorn-io/cmd v0.0.0-20240101193821-66a32bc6b939
 	github.com/acorn-io/mink v0.0.0-20240111054603-0c035e11f167
 	github.com/acorn-io/mink/brent v0.0.0-20240111054603-0c035e11f167
-	github.com/acorn-io/runtime v0.10.0-rc2.0.20240111153655-10e6da758a97
+	github.com/acorn-io/runtime v0.10.0
 	github.com/acorn-io/z v0.0.0-20231104012607-4cab1b3ec5e5
-	github.com/sashabaranov/go-openai v1.17.11
+	github.com/sashabaranov/go-openai v1.18.3
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.0
 	k8s.io/api v0.29.0

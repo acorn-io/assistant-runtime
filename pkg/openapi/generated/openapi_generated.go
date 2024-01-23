@@ -221,7 +221,7 @@ func schema_acorn_io_aml_pkg_jsonschema_Schema(ref common.ReferenceCallback) com
 						},
 					},
 				},
-				Required: []string{"Property"},
+				Required: []string{"Property", "properties"},
 			},
 		},
 		Dependencies: []string{
@@ -905,6 +905,12 @@ func schema_pkg_apis_assistantacornio_v1_InvokeToolSpec(ref common.ReferenceCall
 							Format: "",
 						},
 					},
+					"responseMessageName": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
 					"toolCall": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
@@ -936,6 +942,18 @@ func schema_pkg_apis_assistantacornio_v1_InvokeToolStatus(ref common.ReferenceCa
 									},
 								},
 							},
+						},
+					},
+					"assistantMessageName": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"generation": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"integer"},
+							Format: "int64",
 						},
 					},
 					"inProgress": {
@@ -1220,6 +1238,20 @@ func schema_pkg_apis_assistantacornio_v1_MessageStatus(ref common.ReferenceCallb
 						SchemaProps: spec.SchemaProps{
 							Type:   []string{"string"},
 							Format: "",
+						},
+					},
+					"invokeToolNames": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
 						},
 					},
 					"conditions": {

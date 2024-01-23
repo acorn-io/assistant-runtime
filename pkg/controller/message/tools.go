@@ -48,9 +48,10 @@ func InvokeTools(req router.Request, resp router.Response) error {
 				Namespace: msg.Namespace,
 			},
 			Spec: v1.InvokeToolSpec{
-				ThreadName:        msg.Status.ThreadName,
-				ParentMessageName: msg.Name,
-				ToolCall:          *call,
+				ThreadName:          msg.Status.ThreadName,
+				ParentMessageName:   msg.Name,
+				ResponseMessageName: name.SafeConcatName(msg.Name, toolName),
+				ToolCall:            *call,
 			},
 		})
 	}
@@ -58,6 +59,8 @@ func InvokeTools(req router.Request, resp router.Response) error {
 	var (
 		lastMessage = msg.Name
 	)
+
+	msg.Status.InvokeToolNames = invokeToolNames
 
 	for i, toolName := range invokeToolNames {
 		var invoke v1.InvokeTool

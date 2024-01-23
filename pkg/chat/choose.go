@@ -57,6 +57,9 @@ func toChoice(list runtime.Object) (names []string, descriptions []string, _ err
 			desc = d.GetDescription()
 		}
 		names = append(names, obj.(kclient.Object).GetName())
+		if len(desc) > 50 {
+			desc = desc[:50]
+		}
 		descriptions = append(descriptions, desc)
 		return nil
 	})

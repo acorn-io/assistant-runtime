@@ -19,7 +19,7 @@ func Handle(req router.Request, resp router.Response) error {
 	}
 
 	if err := req.Get(&assistant, req.Namespace, invoke.Spec.ToolCall.Function.Name); apierror.IsNotFound(err) {
-		if len(invoke.Status.Content) == 0 {
+		if len(invoke.Status.Content) == 0 || invoke.Generation != invoke.Status.Generation {
 			if err := req.Get(&assistant, req.Namespace, thread.Spec.AssistantName); err != nil {
 				return err
 			}
@@ -41,5 +41,6 @@ func Handle(req router.Request, resp router.Response) error {
 		invoke.Status.InProgress = msg.Status.InProgress
 	}
 
+	invoke.Status.Generation = invoke.Generation
 	return nil
 }
